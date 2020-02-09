@@ -1,5 +1,4 @@
 library(decryptrSound)
-library(base64enc)
 
 #* @get /
 root <- function() {
