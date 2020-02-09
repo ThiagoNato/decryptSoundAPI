@@ -7,7 +7,7 @@ RUN \
   apt-get install -y libssl-dev libjpeg-dev libmagick++-dev && \
   rm -rf /var/lib/apt/lists/*
 
-RUN Rscript -e "install.packages(c('tidyverse', 'magrittr', 'base64enc', 'tuneR'))"
+RUN Rscript -e "install.packages(c('tidyverse', 'base64enc', 'tuneR'))"
 RUN Rscript -e "remotes::install_github('rstudio/reticulate')"
 RUN Rscript -e "remotes::install_github('rstudio/tensorflow')"
 RUN Rscript -e "remotes::install_github('rstudio/keras')"
