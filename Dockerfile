@@ -1,23 +1,22 @@
-FROM rocker/tensorflow
-MAINTAINER decryptSound <nato.tns@gmail.com>
+FROM rocker/tidyverse:3.6.1
+MAINTAINER ThiagoNato <nato.tns@gmail.com>
 
 RUN \
   apt-get update && \
   apt-get install -y apt-transport-https && \
-  apt-get install -y libssl-dev libjpeg-dev libmagick++-dev && \
   rm -rf /var/lib/apt/lists/*
 
-RUN Rscript -e "install.packages(c('tidyverse', 'base64enc', 'tuneR'))"
-RUN Rscript -e "remotes::install_github('rstudio/reticulate')"
-RUN Rscript -e "remotes::install_github('rstudio/tensorflow')"
-RUN Rscript -e "remotes::install_github('rstudio/keras')"
+RUN Rscript -e "install.packages(c('plumber', 'yaml', 'base64enc', 'remotes'))"
+RUN Rscript -e "remotes::install_github('tidyverse/tidyverse')"
+RUN Rscript -e "remotes::install_github('cran/tuneR')"
 
 # Install captcha-breaking captchas
 RUN Rscript -e "remotes::install_github('ThiagoNato/decryptSound')"
 
 COPY decryptSoundAPI.R decryptSoundAPI.R
+#COPY keys.yaml keys.yaml
 
 # Run
-EXPOSE 9090
+EXPOSE 8081
 
-CMD ["Rscript", "-e", "pr <- plumber::plumb('decryptSoundAPI.R'); pr$run(host='0.0.0.0', port=9090)"]
+CMD ["Rscript", "-e", "pr <- plumber::plumb('decryptSoundAPI.R'); pr$run(host='0.0.0.0', port=8081)"]
