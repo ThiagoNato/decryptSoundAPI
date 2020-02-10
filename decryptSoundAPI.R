@@ -1,4 +1,4 @@
-library(decryptrSound)
+library(decryptSound)
 
 #* @get /
 root <- function() {
