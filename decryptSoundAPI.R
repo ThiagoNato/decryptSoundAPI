@@ -10,6 +10,6 @@ root <- function() {
 #* @param guid Name of file
 #* @post /cpomPMSP
 cpomPMSP <- function(encode64, guid) {
-  decryptSound::decryptSound(encode64, guid)
+  decryptSound(encode64, guid)
 }
 
