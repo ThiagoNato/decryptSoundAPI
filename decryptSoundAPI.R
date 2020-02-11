@@ -1,4 +1,6 @@
 library(decryptSound)
+library(tuneR)
+library(magrittr)
 
 #* @get /
 root <- function() {
@@ -10,6 +12,14 @@ root <- function() {
 #* @param guid Name of file
 #* @post /cpomPMSP
 cpomPMSP <- function(encode64, guid) {
-  decryptSound(encode64, guid)
+
+  # mp3 <- guid + ".mp3"
+  #
+  # #Salva o mp3 localmente
+  # fs <- file(mp3, "wb")
+  # base64enc::base64decode(encode64, fs)
+  # close(fs)
+
+  decryptSound(encode64)
 }
 
