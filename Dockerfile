@@ -6,7 +6,7 @@ RUN \
   apt-get install -y apt-transport-https && \
   rm -rf /var/lib/apt/lists/*
 
-RUN Rscript -e "install.packages(c('plumber', 'yaml', 'base64enc', 'remotes'))"
+RUN Rscript -e "install.packages(c('plumber', 'yaml', 'base64enc', 'remotes', 'uuid'))"
 RUN Rscript -e "remotes::install_github('tidyverse/tidyverse')"
 RUN Rscript -e "remotes::install_github('cran/tuneR')"
 
